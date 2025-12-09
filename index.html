@@ -13,7 +13,7 @@
   <div class="logo">Bibo's Creation</div>
 </header>
 
-<div id="sideMenu">
+<div id="sideMenu" class="closed">
   <h3>Menu</h3>
   <a href="#" onclick="showAbout()">Home / About</a>
   <a href="https://wa.me/916290386950" target="_blank">WhatsApp</a>
@@ -26,7 +26,7 @@
 </div>
 <div id="gallery"></div>
 
-<div id="ownerPanel">
+<div id="ownerPanel" style="display:none;">
   <h3>Owner Panel</h3>
   <p>You are logged in as owner.</p>
   <p><b>To add new images:</b></p>
@@ -46,7 +46,9 @@
   const sideMenu = document.getElementById('sideMenu');
   const ownerPanel = document.getElementById('ownerPanel');
 
-  menuBtn.onclick = () => sideMenu.classList.toggle('open');
+  menuBtn.onclick = () => {
+    sideMenu.classList.toggle('open');
+  };
 
   function ownerLogin() {
     const pass = prompt("Enter owner password:");
