@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f7f7f7;
+}
+
+header {
+    background: #ff6f61;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.menu-btn {
+    cursor: pointer;
+}
+
+#menu {
+    display: none;
+    flex-direction: column;
+    background: #333;
+}
+
+#menu.open {
+    display: flex;
+}
+
+#menu a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+.card {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
