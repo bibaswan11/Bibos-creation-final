@@ -1,4 +1,4 @@
-/* BASIC RESET */
+/* RESET */
 html, body {
   margin: 0;
   padding: 0;
@@ -18,11 +18,11 @@ header {
 }
 
 #menuBtn {
-  font-size: 26px;
+  font-size: 28px;
   cursor: pointer;
 }
 
-/* FIXED SIDE MENU */
+/* FIXED SIDE MENU - CORRECT VERSION */
 #sideMenu {
   position: fixed;
   top: 0;
@@ -30,26 +30,27 @@ header {
   width: 250px;
   height: 100vh;
   background: white;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
   padding: 20px;
-  transform: translateX(-260px);  /* HIDDEN */
+  box-shadow: 2px 0 6px rgba(0,0,0,0.2);
+  transform: translateX(-260px);
   transition: transform 0.3s ease;
   z-index: 2000;
 }
 
 #sideMenu.open {
-  transform: translateX(0);  /* VISIBLE */
+  transform: translateX(0);
 }
 
 /* MENU LINKS */
 #sideMenu a {
   display: block;
-  margin: 10px 0;
+  margin: 12px 0;
   text-decoration: none;
   color: #333;
+  font-size: 18px;
 }
 
-/* MENU OVERLAY (TO CLOSE MENU) */
+/* DARK OVERLAY */
 #overlay {
   display: none;
   position: fixed;
@@ -57,7 +58,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(2px);
   z-index: 1500;
 }
@@ -69,49 +70,46 @@ header {
 /* GALLERY */
 .title {
   text-align: center;
-  margin-top: 20px;
-  font-size: 24px;
+  margin-top: 25px;
+  font-size: 26px;
 }
 
 #gallery {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
   gap: 15px;
 }
 
 .card {
   background: white;
+  border-radius: 12px;
   padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   text-align: center;
 }
 
 .card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .card p {
-  font-size: 18px; /* Bigger description text (your request) */
+  font-size: 18px;
+  margin-top: 8px;
 }
 
 /* OWNER PANEL */
 #ownerPanel {
   display: none;
+  margin: 20px;
   padding: 15px;
   background: #fff8e1;
   border: 1px solid #ffcc80;
-  margin: 20px;
   border-radius: 10px;
-}
-
-#ownerPanel h3 {
-  margin-top: 0;
 }
 
 textarea {
   width: 100%;
-  height: 80px;
+  height: 90px;
 }
