@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibo's Creation</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#fafafa; }
+    header { background:#ff6f61; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center; }
+    #menuBtn { font-size:26px; cursor:pointer; }
+    #sideMenu { position:fixed; top:0; left:-250px; width:250px; height:100%; background:white; box-shadow:2px 0 5px rgba(0,0,0,0.2); padding:20px; transition:0.3s; }
+    #sideMenu.open { left:0; }
+    #sideMenu a { display:block; margin:10px 0; text-decoration:none; color:#333; }
+
+    .title { text-align:center; margin-top:20px; font-size:24px; }
+    #gallery { padding:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; }
+    .card { background:white; padding:10px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; }
+    .card img { width:100%; border-radius:10px; }
+
+    #ownerPanel { display:none; padding:15px; background:#fff8e1; border:1px solid #ffcc80; margin:20px; border-radius:10px; }
+    #ownerPanel h3 { margin-top:0; }
+    textarea { width:100%; height:80px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div id="menuBtn">☰</div>
+  <div class="logo">Bibo's Creation</div>
+</header>
+
+<div id="sideMenu">
+  <h3>Menu</h3>
+  <a href="#" onclick="ownerLogin()">Register as Owner</a>
+  <a href="https://wa.me/916290386950" target="_blank">WhatsApp</a>
+  <a href="#">Categories</a>
+  <a href="#">About</a>
+</div>
+
+<h2 class="title">Public Gallery</h2>
+<div id="gallery"></div>
+
+<div id="ownerPanel">
+  <h3>Owner Panel</h3>
+  <p>You are logged in as owner.</p>
+  <p><b>To add new images:</b></p>
+  <ol>
+    <li>Upload your image file into the <b>images/</b> folder on GitHub.</li>
+    <li>Add an entry inside <b>images.json</b>.</li>
+  </ol>
+  <p>Use this generator:</p>
+  <input type="text" id="fileName" placeholder="example: earring1.jpg" />
+  <input type="text" id="fileDesc" placeholder="description" />
+  <button onclick="generateJSON()">Generate JSON Entry</button>
+  <textarea id="generated" readonly></textarea>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const sideMenu = document.getElementById('sideMenu');
+  const ownerPanel = document.getElementById('ownerPanel');
+
+  menuBtn.onclick = () => sideMenu.classList.toggle('open');
+
+  function ownerLogin() {
+    const pass = prompt("Enter owner password:");
+    if (pass === "9830224088") {
+      alert("Owner mode activated");
+      ownerPanel.style.display = "block";
+    } else {
+      alert("Incorrect password. Continuing as user.");
+    }
+  }
+
+  function generateJSON() {
+    const f = document.getElementById("fileName").value;
+    const d = document.getElementById("fileDesc").value;
+    document.getElementById("generated").value = `{
+  "file": "${f}",
+  "desc": "${d}"
+},`;
+  }
+
+  fetch("images.json?cache=" + Date.now())
+    .then(res => res.json())
+    .then(data => {
+      let gallery = document.getElementById("gallery");
+      data.forEach(item => {
+        gallery.innerHTML += `
+          <div class='card'>
+            <img src='images/${item.file}' />
+            <p>${item.desc}</p>
+          </div>`;
+      });
+    });
+</script>
+
+</body>
+</html>
